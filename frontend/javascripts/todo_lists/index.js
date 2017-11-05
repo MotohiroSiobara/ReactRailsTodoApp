@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 
+// let store = createStore(todoLists, { hello: "world"})
+
 export default class TodoList extends Component {
   render() {
     return (
-        <div>
-          <h1>Welcome to React</h1>
-        </div>
+        <h1>aaa</h1>
     );
   }
 }
