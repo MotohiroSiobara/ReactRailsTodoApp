@@ -8,6 +8,10 @@ class TodoListsController < ApplicationController
   def edit
   end
 
+  def state
+    render json: { todoLists: [{title: "サンプル", checked: false}] }
+  end
+
   def create
     redirect_to root_path
   end
