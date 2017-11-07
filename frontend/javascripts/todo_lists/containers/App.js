@@ -5,9 +5,16 @@ import { connect } from 'react-redux';
 class App extends Component {
   render() {
     const { todoLists } = this.props
+    let lists = []
+    {
+      todoLists.forEach((v, i, a) => {
+        lists.push(<li>v.name</li>)
+      })
+    }
     return (
         <div>
-          <h1>TODOアプリ</h1>
+        <h1>TODOアプリ</h1>
+        <ul>{lists}</ul>
         </div>
     );
   }
