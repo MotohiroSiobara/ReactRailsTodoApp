@@ -1,22 +1,9 @@
 class TodoListsController < ApplicationController
   def index
-  end
-
-  def new
-  end
-
-  def edit
-  end
-
-  def state
-    render json: { todoLists: [{title: "サンプル", checked: false}] }
+    @state = { todoLists: [{ title: "サンプル", checked: false },{ title: "サンプル", checked: false }] }
   end
 
   def create
-    redirect_to root_path
-  end
-
-  def update
     redirect_to root_path
   end
 end

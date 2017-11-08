@@ -4,24 +4,46 @@ import { connect } from 'react-redux';
 
 class App extends Component {
   render() {
-    const { todoLists } = this.props
-    let lists = []
-    {
-      todoLists.forEach((v, i, a) => {
-        lists.push(<li>v.name</li>)
-      })
-    }
     return (
         <div>
-        <h1>TODOアプリ</h1>
-        <ul>{lists}</ul>
+        {this.listCreator()}
         </div>
     );
+  }
+  listCreator() {
+    let lists = []
+    {
+      this.props.todoLists.forEach((v, i, a) => {
+        lists.push(
+            <input type='checkbox' value={v['title']} id={v['title']} />
+        )
+        lists.push(
+            <label htmlFor={v['title']}>{v['title']}</label>
+        )
+      })
+    }
+    return lists
+  }
+ }
+
+ const mapStateToProps = (state) => {
+  return {
+    todoLists: state.todoLists
+  }
+ }
+
+ export default connect(mapStateToProps)(App)}>{v['title']}</label>
+        )
+      })
+    }
+    return lists
   }
 }
 
 const mapStateToProps = (state) => {
-  return {state};
+  return {
+    todoLists: state.todoLists
+  }
 }
 
 export default connect(mapStateToProps)(App);

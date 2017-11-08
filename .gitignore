@@ -13,7 +13,7 @@
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
-frontend/node_modules/*
+/frontend/node_modules/*
 !/log/.keep
 !/tmp/.keep
 

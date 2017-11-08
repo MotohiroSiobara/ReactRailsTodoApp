@@ -1,5 +1,3 @@
-import initialState from './initialState.js';
-
-export default function todoLists(state = initialState(), action) {
+export default function todoLists(state = [], action) {
   return state;
 }
