@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { connect } from 'react-redux';
+import * as actions from '../actions'
+
 
 class App extends Component {
   render() {
     return (
         <div>
-        {this.listCreator()}
+        <form>
+          <ul>
+            {this.listCreator()}
+          </ul>
+        </form>
         </div>
     );
   }
@@ -14,25 +20,12 @@ class App extends Component {
     let lists = []
     {
       this.props.todoLists.forEach((v, i, a) => {
+        let idName = `todo_input_${i}`
         lists.push(
-            <input type='checkbox' value={v['title']} id={v['title']} />
-        )
-        lists.push(
-            <label htmlFor={v['title']}>{v['title']}</label>
-        )
-      })
-    }
-    return lists
-  }
- }
-
- const mapStateToProps = (state) => {
-  return {
-    todoLists: state.todoLists
-  }
- }
-
- export default connect(mapStateToProps)(App)}>{v['title']}</label>
+            <li key={i}>
+            <input key={i} type='checkbox' value={v['title']} id={idName} onChange={() => this.props.dispatch(actions.changeChecked(i, v['checked']))} />
+            <label key={i + 1} htmlFor={idName} onChange={() => console.log("aaa")}>{v['title']}</label>
+            </li>
         )
       })
     }
