@@ -1,2 +1,0 @@
-h1 TODOLISTアプリ
-= react_component('TodoList', @state)
