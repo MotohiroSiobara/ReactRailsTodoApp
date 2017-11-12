@@ -28,7 +28,7 @@ class App extends Component {
         let idName = `todo_input_${i}`
         lists.push(
             <li key={i}>
-            <input key={i} type='checkbox' value={v['title']} id={idName} onChange={() => this.checkAction(i, v['checked'])} />
+            <input key={i} type='checkbox' value={v['title']} id={idName} onChange={() => this.checkAction(i, v['checked'])} checked={this.checkFlg(v['checked'])} />
             <label key={i + 1} htmlFor={idName} onChange={() => console.log("aaa")} onChange={() => this.checkAction(i, v['checked'])}>
               {v['title']}
             </label>
@@ -40,6 +40,12 @@ class App extends Component {
   }
   checkAction(index, checked) {
     this.props.dispatch(actions.changeChecked(index, checked))
+  }
+  checkFlg(checked) {
+    if(checked) {
+      return 'checked'
+    }
+    return ''
   }
 }
 
