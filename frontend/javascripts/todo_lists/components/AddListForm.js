@@ -23,7 +23,8 @@ export default class AddListForm extends Component {
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
-    event.preventDefault();
+    this.props.addList(this.state.value)
+    event.preventDefault()
+    this.setState({value: ''});
   }
 }
