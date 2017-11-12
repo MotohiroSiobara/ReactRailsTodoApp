@@ -14,6 +14,7 @@
 /log/*
 /tmp/*
 /frontend/node_modules/*
+/app/assets/javascripts/react_components.js
 !/log/.keep
 !/tmp/.keep
 
