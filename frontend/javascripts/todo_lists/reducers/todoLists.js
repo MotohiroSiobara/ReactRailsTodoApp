@@ -16,6 +16,14 @@ export default function todoLists(state = [], action) {
       }),
       ...state.slice(action.index + 1)
     ]
+  case "ADDLIST":
+    return [
+      ...state,
+      {
+        title: action.title,
+        checked: false
+      }
+    ]
   }
   return state;
 }

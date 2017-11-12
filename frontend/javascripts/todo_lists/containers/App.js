@@ -1,18 +1,23 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { render } from 'react-dom';
 import { connect } from 'react-redux';
-import * as actions from '../actions'
-
+import * as actions from '../actions';
+import AddListForm from '../components/AddListForm';
 
 class App extends Component {
   render() {
+    const { todoLists, dispatch } = this.props
     return (
         <div>
-        <form>
           <ul>
             {this.listCreator()}
           </ul>
-        </form>
+        <AddListForm
+          addList={(text) => dispatch(actions.addList(text))}
+        />
+        <div>
+        <button onClick={() => dispatch(actions.ajaxSubmit(todoLists))}>保存</button>
+        </div>
         </div>
     );
   }
@@ -23,14 +28,27 @@ class App extends Component {
         let idName = `todo_input_${i}`
         lists.push(
             <li key={i}>
-            <input key={i} type='checkbox' value={v['title']} id={idName} onChange={() => this.props.dispatch(actions.changeChecked(i, v['checked']))} />
-            <label key={i + 1} htmlFor={idName} onChange={() => console.log("aaa")}>{v['title']}</label>
+            <input key={i} type='checkbox' value={v['title']} id={idName} onChange={() => this.checkAction(i, v['checked'])} />
+            <label key={i + 1} htmlFor={idName} onChange={() => console.log("aaa")} onChange={() => this.checkAction(i, v['checked'])}>
+              {v['title']}
+            </label>
             </li>
         )
       })
     }
     return lists
   }
+  checkAction(index, checked) {
+    this.props.dispatch(actions.changeChecked(index, checked))
+  }
+}
+
+App.propTypes = {
+  todoLists: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.integer,
+    title: PropTypes.string.isRequired,
+    checked: PropTypes.bool.isRequired
+  }))
 }
 
 const mapStateToProps = (state) => {

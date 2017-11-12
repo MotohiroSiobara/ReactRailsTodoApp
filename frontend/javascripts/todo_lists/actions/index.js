@@ -10,3 +10,22 @@ export const changeChecked = (index, checked) => {
     index: index
   }
 }
+
+export const addList = (title) => {
+  return {
+    type: "ADDLIST",
+    title
+  }
+}
+
+export const ajaxSubmit = (todoLists) => (dispatch, state) => {
+  $.ajax({
+    url: '/todo_lists',
+    type: 'post',
+    contentType: 'application/json',
+    data: JSON.stringify({
+      todo_lists: todoLists
+    })
+  }).done(json => {
+  })
+}

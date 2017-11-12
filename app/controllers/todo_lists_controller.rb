@@ -1,9 +1,15 @@
 class TodoListsController < ApplicationController
   def index
-    @state = { todoLists: [{ title: "サンプル", checked: false },{ title: "サンプル2", checked: false }] }
+    todolists = TodoList.all.to_a.map do |list|
+      { id: list.id, title: list.title, checked: list.checked }
+    end
+    @state = { todoLists: todolists }
   end
 
   def create
+    params["todo_lists"].each do |param|
+      TodoList.create(title: param[:title], checked: param[:checked])
+    end
     redirect_to root_path
   end
 end
